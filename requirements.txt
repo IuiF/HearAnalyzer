@@ -1,2 +1,4 @@
 pydub
 moviepy
+openai
+git+https://github.com/openai/whisper.git
