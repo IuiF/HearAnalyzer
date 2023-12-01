@@ -3,5 +3,6 @@ moviepy
 openai
 git+https://github.com/openai/whisper.git
 pyannote.audio
-spacy
 yt-dlp
+spacy
+deplacy
