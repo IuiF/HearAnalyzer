@@ -9,7 +9,7 @@
 
 
 
-## pydubを使用しているためffmpegをシステムにインストールする必要があります
+## ffmpegをシステムにインストールする必要があります
 
 ### windows
 ```
@@ -25,3 +25,12 @@ $ brew install ffmpeg
 $ sudo apt-get update
 $ sudo apt-get install ffmpeg
 ```
+
+
+## pyannote/speaker-diarization と pyannote/segmentation を使用しています。
+
+### 以下の規約に同意した上で AccessToken を用意してください
+
+[pyannote/speaker-diarization](https://huggingface.co/pyannote/speaker-diarization)
+
+[pyannote/segmentation](https://huggingface.co/pyannote/segmentation)
