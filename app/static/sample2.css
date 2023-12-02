@@ -42,9 +42,9 @@ body {
 }
 
 .uploadbutton {
-    position:absolute;
+    /* position:absolute;
     right:25%;
-    bottom:20%;
+    bottom:20%; */
     text-align: center;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
