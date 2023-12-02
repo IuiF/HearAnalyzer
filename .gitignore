@@ -3,4 +3,3 @@ tmp/
 .env
 *.json
 *.ipynb
-flask

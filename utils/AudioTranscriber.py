@@ -72,7 +72,7 @@ class AudioTranscriber:
         model = whisper.load_model(self.model_name)
 
         # 話者分離
-        diarization = pipeline(self.input_path)
+        diarization = pipeline(self.input_path, max_speakers=8)
 
         # データベース接続
         conn = sqlite3.connect(self.db_path)

@@ -9,3 +9,7 @@ deplacy
 google-cloud-translate==2.0.1
 six==1.15.0
 python-dotenv
+SQLAlchemy
+flask-sqlalchemy
+PyMySQL
+flask
