@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <title>英語スクリプト作成app</title>
@@ -23,7 +24,7 @@
     </form>
 
     <form action="/index" method="POST">
-    音声・動画アップ{{ input }}<br>
+      音声・動画アップ{{ input }}<br>
       <div class="filearea" id="video" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
         <label>
           <input type="file" name="file1" accept='video/*, audio/*' onchange="preview(this, 'preview-video');"></p>
@@ -36,12 +37,13 @@
     </form>
     <!-- <button class="uploadbutton" type="submit" onclick="location.href='/index'">スクリプト生成</button> -->
   </div>
-  
-  
-  
+
+
+
   <!-- <div class="footer">
     <span>Footer領域</span>
     <a href="#">リンク</a>
   </div> -->
 </body>
+
 </html>

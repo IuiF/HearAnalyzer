@@ -6,20 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resizable Layout</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" /> <!-- Video.js -->
+    <script src="https://vjs.zencdn.net/8.6.1/video.js"></script>
     <script src="{{ url_for('static', filename='js/speaker.js') }}"></script>
     <!-- <style></style> -->
 </head>
 
 <body>
     <div id="left-side">
-        <div class="left-section video">動画</div>
+        <div class="left-section video">
+            <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
+                <source src="{{ url_for('static', filename='tmp/video.mp4') }}" type="video/mp4" />
+                <source src="{{ url_for('static', filename='tmp/video.mp3') }}" type="audio/mp3" />
+                <p class="vjs-no-js">
+                    このビデオを見るにはJavaScriptを有効にし、Webブラウザをアップグレードしてください
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">HTML5ビデオのサポートがあるブラウザ</a>
+                </p>
+            </video>
+
+        </div>
         <div class="left-section conversation">
             <div id="conversation">
-
             </div>
         </div>
     </div>
     <div id="right-side">構文解析</div>
+
+    <script>var player = videojs('my-video');</script>
 </body>
 
 </html>
