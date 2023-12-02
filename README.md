@@ -41,4 +41,3 @@ pyannote/speaker-diarization-3.1
 ### サービスアカウントキーをJSONファイルを任意のディレクトリに配置してから.envを書き換えてください
 
 [GCP Translation](https://cloud.google.com/translate/?hl=ja)
-
