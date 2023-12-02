@@ -3,3 +3,4 @@ tmp/
 .env
 *.json
 *.ipynb
+__pycache__/
