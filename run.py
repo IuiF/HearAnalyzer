@@ -6,7 +6,7 @@ sys.path.append("./app")
 from app import app
 
 
-folder_path = "./app/tmp"
+folder_path = "./app/static/tmp/"
 shutil.rmtree(folder_path)
 os.mkdir(folder_path)
 

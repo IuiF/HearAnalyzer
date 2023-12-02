@@ -39,7 +39,7 @@ def generate_script_from_url(url):
 
 def generate_script_from_file(file):
     try:
-        converter = MediaConverter(file)
+        converter = MediaConverter(file, output_path="app/static/tmp")
         output_file = converter.convert()
         print("#########", output_file)
     except ValueError as e:
@@ -47,8 +47,8 @@ def generate_script_from_file(file):
 
     # 使用例
     transcriber = AudioTranscriber(
-        input_path="tmp/video.mp3",
-        db_path="tmp/output.db",
+        input_path="app/static/tmp/video.mp3",
+        db_path="app/static/tmp/output.db",
         model_name="large-v3",  # モデルのサイズによっては 'small', 'medium', 'large', 'base', 'large-v3' などを選択
         token_key=os.getenv("HuggingFace_Taken"),
         gcp_path=os.getenv("GCPKey_Path"),
