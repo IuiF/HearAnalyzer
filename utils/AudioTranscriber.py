@@ -5,16 +5,57 @@ from pydub import AudioSegment
 import whisper
 import torch
 from pyannote.audio import Pipeline
+import sqlite3
+
+
+def create_database(db_path):
+    # 既に存在する場合は削除
+    if os.path.exists(db_path):
+        os.remove(db_path)
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # トランスクリプションを保存するテーブル
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS transcriptions (
+            id INTEGER PRIMARY KEY,
+            start REAL,
+            end REAL,
+            speaker TEXT,
+            text TEXT
+        )
+    """
+    )
+
+    # 音声セグメントを保存するテーブル
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS audio_segments (
+            id INTEGER PRIMARY KEY,
+            audio BLOB
+        )
+    """
+    )
+
+    conn.commit()
+    conn.close()
 
 
 class AudioTranscriber:
     def __init__(
-        self, input_path=None, output_path=None, model_name="base", token_key=None
+        self,
+        input_path=None,
+        db_path="tmp_transcription.db",
+        model_name="base",
+        token_key=None,
     ):
         self.input_path = input_path
-        self.output_path = output_path or "transcription.csv"
+        self.db_path = db_path
         self.model_name = model_name
         self.token_key = token_key
+        create_database(self.db_path)
 
     def process(self):
         # モデルのロード
@@ -26,6 +67,10 @@ class AudioTranscriber:
 
         # 話者分離
         diarization = pipeline(self.input_path)
+
+        # データベース接続
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
 
         # 結果をCSVファイルに書き込む準備
         with open(self.output_path, mode="w", newline="", encoding="utf-8") as file:
@@ -51,9 +96,25 @@ class AudioTranscriber:
                 #     f'[{segment.start:03.1f}s - {segment.end:03.1f}s] {speaker}: {text}'
                 # )
 
-                # CSVファイルに書き込み
-                quoted_text = f'"{text}"'
-                writer.writerow([segment.start, segment.end, speaker, quoted_text])
+                # トランスクリプションをデータベースに保存
+                cursor.execute(
+                    """
+                    INSERT INTO transcriptions (start, end, speaker, text)
+                    VALUES (?, ?, ?, ?)
+                """,
+                    (segment.start, segment.end, speaker, text),
+                )
+
+                # 音声セグメントをデータベースに保存
+                with open(tmp_file_path, "rb") as audio_file:
+                    audio_data = audio_file.read()
+                    cursor.execute(
+                        """
+                        INSERT INTO audio_segments (audio)
+                        VALUES (?)
+                    """,
+                        (audio_data,),
+                    )
 
                 # 一時ファイルを削除
                 os.remove(tmp_file_path)
