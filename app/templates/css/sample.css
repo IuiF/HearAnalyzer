@@ -16,11 +16,11 @@
     text-align: center;
   }*/
 
-  body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-  }
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
    
 .main {
   /* padding-top: 50px; */
@@ -32,13 +32,24 @@
 .contents {
   position:absolute;
   /* width: 520px; */
-  top:15%;
-  bottom:10%;
-  right: 10%;
-  left: 10%;
+  top:10%;
+  bottom:5%;
+  right: 5%;
+  left: 5%;
   flex: 5;
+  order: 1;
   display: flex;
   flex-direction: row;
+}
+
+.buttons{
+  position:absolute;
+  /* width: 520px; */
+  bottom:1%;
+  left: 5%;
+
+  flex:1;
+  order: 2;
 }
 
 .left {
@@ -53,6 +64,7 @@
   width: 520px;
   top:15%;
   left:10%; */
+  margin: 1;
 
   border: solid 4px yellow;
   background: black;
@@ -60,7 +72,7 @@
   box-sizing: border-box;
 
   text-align: center;
-  line-height: 100px;
+  /* line-height: 100px; */
   font-weight: bold;
   font-size: 60px;
 
@@ -74,10 +86,12 @@
   left:10%; */
 
   border: solid 4px red;
+  background: pink;
   box-sizing: border-box;
+  overflow-y: scroll;  
 
   text-align: left;
-  line-height: 100px;
+  /* line-height: 100px; */
   /* font-weight: bold; */
   font-family: "Times New Roman";
   font-size: 20px;
@@ -93,11 +107,79 @@
   flex:1;
 
   border: solid 4px blue;
+  background: #0bd;
   box-sizing: border-box;
+  overflow-y: scroll;  
 
   text-align: left;
-  line-height: 100px;
+  /* line-height: 100px; */
   /* font-weight: bold; */
   font-family: "Times New Roman";
   font-size: 20px;
+}
+
+
+/* 吹き出し */
+/* 左右共通のスタイリング */
+.left-side,
+.right-side {
+    width: 100%;
+    margin: 20px 0;
+    overflow: hidden;
+}
+.icon {
+    width: 100px;
+    text-align: center;
+}
+.icon img {
+    width: 70px;
+    height: 70px;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+}
+.icon p {
+    margin: 0px;
+    word-wrap: break-word;
+}
+.bubble {
+    max-width: 70%;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+    background: #f5f5f5;
+    position: relative;
+}
+.bubble::before{
+    content: "";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    position: absolute;
+}
+/* 左側表示の吹き出しのスタイリング */
+.left-side .icon {
+    float: left;
+    margin-left: 10px;
+}
+.left-side .bubble{
+    margin: 10px 0 0 20px;
+}
+.left-side .bubble::before{
+    top: 15px;
+    left: -20px;
+    border-right-color: #f5f5f5;
+}
+/* 右側表示の吹き出しのスタイリング */
+.right-side .icon {
+    float: right;
+    margin-right: 10px;
+}
+.right-side .bubble{
+    float: right;
+    margin: 10px 20px 0 0;
+}
+.right-side .bubble::before{
+    top: 15px;
+    right: -20px;
+    border-left-color: #f5f5f5;
 }
