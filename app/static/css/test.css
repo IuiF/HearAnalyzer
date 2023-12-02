@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 2%;
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+}
+
+#left-side {
+    box-sizing: border-box;
+    width: 45%;
+    padding: 20px;
+    background-color: #9ACD32;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#right-side {
+    box-sizing: border-box;
+    width: 53%; /* 右側の幅を設定 */
+    margin-left: 2%; /* 左側の余白を設定 */
+    padding: 20px;
+    background-color: #9370DB;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#conversation {
+    box-sizing: border-box;
+    background-color: azure;
+    overflow: auto;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section.video {
+    flex: 1;
+    background-color: #8FBC8F;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.left-section.conversation {
+    flex: 1;
+    background-color: #2d422d;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    box-sizing: border-box;
+    padding: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.speaker-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.speaker-text {
+    background-color: #e4e4e4;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 70%;
+}
