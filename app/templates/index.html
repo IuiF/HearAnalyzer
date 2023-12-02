@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>英語スクリプト作成app</title>
-  <link rel="stylesheet" href="css/sample.css">
+  <link rel="stylesheet"type="text/css" href="{{ url_for('static', filename='sample.css') }}">
   <!-- <script type="text/javascript" src="sample.js"></script> -->
 </head>
 <body>
@@ -15,17 +15,17 @@
   <div class = 'contents'>
     <div class="left">
       <div class="box1">
-        <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/V91tqFUhwjU?si=rlCVI_xCyA1umG5H" 
-        title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/V91tqFUhwjU?si=rlCVI_xCyA1umG5H"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
       </iframe>
       </div>
       <div class="box2">英語のスクリプト
         <div class="left-side">
           <div class="icon">
-              <img src="images/じいさん.png">
+              <img src="{{ url_for('static', filename='images/じいさん.png') }}" alt="じいさん">
               <p>1</p>
           </div>
           <div class="bubble">
@@ -33,7 +33,7 @@
           </div>
           <div class="right-side">
             <div class="icon">
-                <img src="images/ばあさん.png">
+              <img src="{{ url_for('static', filename='images/ばあさん.png') }}" alt="ばあさん">
                 <p>2</p>
             </div>
             <div class="bubble">
@@ -49,9 +49,9 @@
     <button class="button" type="button" onclick="location.href='./upload.html'">戻る</button>
     <button class="button" type="button">保存</button>
   </div>
-  
-  
-  
+
+
+
   <!-- <div class="footer">
     <span>Footer領域</span>
     <a href="#">リンク</a>
