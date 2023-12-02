@@ -2,8 +2,8 @@ from yt_dlp import YoutubeDL
 
 
 class VideoDownloader:
-    def __init__(self, video_link):
-        self.video_link = video_link
+    def __init__(self):
+        self.video_link = None
         self.output_path = "../tmp/video.mp4"
 
     def download_video(self, video_link=None, output_path=None):
