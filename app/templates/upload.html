@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>英語スクリプト作成app</title>
-  <link rel="stylesheet" href="css/sample2.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sample2.css') }}">
   <!-- <script type="text/javascript" src="sample.js"></script> -->
 </head>
 
@@ -14,21 +14,28 @@
     <h1>スクリプト生成ソフト</h1>
   </div>
   <div class="box">
-    <div class="link">
-      リンク<br>
-      <input type="text" name="example1" size="50"></p>
-    </div>
-    音声・動画アップ<br>
-    <div class="filearea" id="video" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-      <label>
-        <input type="file" accept='video/*, audio/*' onchange="preview(this, 'preview-video');">
-        <!-- <p class="selecter">＋ファイル選択 または ファイルドロップ</p> -->
-        <!-- <p class="select-file" id="preview-video-file">選択されてません</p>
-        <video class="preview pre-select" id="preview-video" controls="controls"></video> -->
-      </label>
-    </div>
+    <form action="/index" method="POST">
+      <div class="link">
+        リンク<br>
+        <input type="text" name="link1" size="50"></p>
+        <button type="submit" class="uploadbutton">送信</button>
+      </div>
+    </form>
+
+    <form action="/index" method="POST">
+    音声・動画アップ{{ input }}<br>
+      <div class="filearea" id="video" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        <label>
+          <input type="file" name="file1" accept='video/*, audio/*' onchange="preview(this, 'preview-video');"></p>
+          <!-- <p class="selecter">＋ファイル選択 または ファイルドロップ</p> -->
+          <!-- <p class="select-file" id="preview-video-file">選択されてません</p>
+          <video class="preview pre-select" id="preview-video" controls="controls"></video> -->
+          <button type="submit" class="uploadbutton">送信</button>
+        </label>
+      </div>
+    </form>
+    <!-- <button class="uploadbutton" type="submit" onclick="location.href='/index'">スクリプト生成</button> -->
   </div>
-  <button class="uploadbutton" type="button" onclick="location.href='./index.html'">スクリプト生成</button>
   
   
   
