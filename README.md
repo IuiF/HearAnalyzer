@@ -27,7 +27,7 @@ $ sudo apt-get install ffmpeg
 ```
 
 
-## pyannote/speaker-diarization と pyannote/segmentation を使用しています。
+## pyannote/speaker-diarization と pyannote/segmentation を使用しています
 
 ### 以下の規約に同意した上で AccessToken を用意してください
 
