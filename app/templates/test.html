@@ -1,173 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <title>App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 2%;
-            box-sizing: border-box;
-            display: flex;
-            height: 100vh;
-        }
-
-        #current-weather {
-            box-sizing: border-box;
-            width: 25%;
-            padding: 20px;
-            background-color: #9ACD32;
-            color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        #future-weather {
-            box-sizing: border-box;
-            width: 73%; /* 右側の幅を設定 */
-            margin-left: 2%; /* 左側の余白を設定 */
-            padding: 20px;
-            background-color: #9370DB;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            /* ここに未来の天気情報のスタイルを追加 */
-        }
-
-        .weather-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .weather-section.upper {
-            flex: 3;
-            background-color: #8FBC8F;
-            border-radius: 20px;
-            width: 100%;
-            box-sizing: border-box; /* paddingで外側に膨らませない */
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-
-        .weather-section.upper_locatiion {
-            flex: 2;
-            background-color: rgb(109, 217, 221);
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .weather-section.upper_icon {
-            flex: 7;
-            background-color: rgb(115, 133, 134);
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .weather-section.upper_temp {
-            flex: 3;
-            background-color: rgb(30, 41, 35);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .weather-section.upper2 {
-            flex: 2;
-            background-color: rgb(174, 143, 188);
-            border-radius: 20px;
-            width: 100%;
-            box-sizing: border-box; /* paddingで外側に膨らませない */
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-
-        .weather-section.middle {
-            flex: 0.2;
-            border: 2px solid black;
-            width: 100%;
-        }
-
-        .weather-section.lower {
-            flex: 5;
-            background-color: #60802d;
-            border-radius: 20px;
-            width: 100%;
-            box-sizing: border-box; /* paddingで外側に膨らませない */
-            padding: 10px;
-        }
-
-        .weather-section.lower2 {
-            flex: 5;
-            background-color: rgb(128, 64, 145);
-            border-radius: 20px;
-            width: 100%;
-            box-sizing: border-box; /* paddingで外側に膨らませない */
-            padding: 10px;
-        }
-
-        .future-section.upper {
-            flex: 1;
-            background-color: rgb(208, 160, 221);
-            border-radius: 20px;
-            width: 100%;
-        }
-
-        .future-section.middle {
-            flex: 3;
-            background-color: rgb(130, 109, 136);
-            border-radius: 20px;
-            width: 100%;
-        }
-
-        .future-section.lower {
-            flex: 2;
-            background-color: rgb(31, 25, 32);
-            border-radius: 20px;
-            width: 100%;
-        }
-
-        h1, p {
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            background-color: #6B8E23;
-            margin: 0 0 10px 0;
-            padding: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        p {
-            background-color: #FFFFE0;
-            margin: 10px 0;
-            padding: 5px;
-        }
-
-        #rain {
-            display: none; /* 降雨量はデフォルトで非表示 */
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizable Layout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <script src="{{ url_for('static', filename='js/speaker.js') }}"></script>
+    <!-- <style></style> -->
 </head>
-<body onload="getLocation()">
-    <div id="current-weather">
-    </div>
-    <div id="future-weather">
-        <div class="weather-section upper2">
-            <p>test1</p>
-        </div>
 
-        <div class="weather-section lower2">
-            <div class="future-section upper"></div>
-            <div class="future-section middle"></div>
-            <div class="future-section lower"></div>
+<body>
+    <div id="left-side">
+        <div class="left-section video">動画</div>
+        <div class="left-section conversation">
+            <div id="conversation">
+
+            </div>
         </div>
     </div>
+    <div id="right-side">構文解析</div>
 </body>
+
 </html>
