@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -46,6 +46,25 @@ def upload():
 @app.route("/index")
 def index():
     return render_template("index.html")
+
+
+@app.route("/transcriptions")  # 会話情報
+def get_transcriptions():
+    transcriptions = Transcription.query.all()
+    transcription_data = [
+        {
+            "speaker": transcription.speaker,
+            "text": transcription.text,
+            "translation": transcription.translation,
+        }
+        for transcription in transcriptions
+    ]
+    return jsonify(transcription_data)
+
+
+@app.route("/test")
+def test():
+    return render_template("test.html")
 
 
 if __name__ == "__main__":

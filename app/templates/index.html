@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>英語スクリプト作成app</title>
-  <link rel="stylesheet"type="text/css" href="{{ url_for('static', filename='sample.css') }}">
+  <link rel="stylesheet"type="text/css" href="{{ url_for('static', filename='css/sample.css') }}">
   <!-- <script type="text/javascript" src="sample.js"></script> -->
 </head>
 <body>
@@ -29,7 +29,7 @@
               <p>1</p>
           </div>
           <div class="bubble">
-              ばあさんよ<br>おはよう、今日は天気がいいから下北沢で<br>古着でも買ってこようかのう
+              ばあさんよ
           </div>
           <div class="right-side">
             <div class="icon">
@@ -37,8 +37,9 @@
                 <p>2</p>
             </div>
             <div class="bubble">
-              じいさんよ<br>それなら、服はいいから<br>お使い頼んでいいかのう<br>串カツ10本こうてきてくれへんか
+              じいさんよ
             </div>
+            <script src="{{ url_for('static', filename='js/conversation.js') }}"></script>
         </div>
       </div>
       </div>
