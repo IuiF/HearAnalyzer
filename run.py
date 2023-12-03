@@ -1,15 +1,15 @@
 import sys
+import subprocess
 import os
-import shutil
+
+en_flag = "en_flag"
+
+if not os.path.exists(en_flag):
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    open(en_flag, "w").close()
 
 sys.path.append("./app")
 from app import app
-
-
-folder_path = "./app/static/tmp/"
-shutil.rmtree(folder_path)
-os.mkdir(folder_path)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

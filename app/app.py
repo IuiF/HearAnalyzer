@@ -1,3 +1,4 @@
+import shutil
 import sys
 import os
 
@@ -10,19 +11,25 @@ from utils.AudioTranscriber import AudioTranscriber
 from dotenv import load_dotenv
 from utils.TextAnalyzer import TextAnalyzer
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 
 app = Flask(__name__)
+analyzer = TextAnalyzer()
 load_dotenv(".env")
 
 
 def generate_script_from_url(url):
+    # 既存解析データの削除
+    folder_path = "./app/static/tmp/"
+    shutil.rmtree(folder_path)
+    os.mkdir(folder_path)
+
     dl = VideoDownloader()
     dl.download_video(video_link=url, output_path="app/static/tmp/video.mp4")
     try:
         converter = MediaConverter("app/static/tmp/video.mp4")
-        output_file = converter.convert()
-        # print("#########", output_file)
+        converter.convert()
     except ValueError as e:
         print(e)
 
@@ -38,8 +45,13 @@ def generate_script_from_url(url):
 
 
 def generate_script_from_file(file):
+    # 既存解析データの削除
+    folder_path = "./app/static/tmp/"
+    shutil.rmtree(folder_path)
+    os.mkdir(folder_path)
+
     try:
-        converter = MediaConverter(file, output_path="app/static/tmp")
+        converter = MediaConverter(file)
         output_file = converter.convert()
         print("#########", output_file)
     except ValueError as e:
@@ -91,19 +103,22 @@ def get_translation(transcription_id):
 
 @app.route("/")
 def upload():
-    input = "world"
+    input = ""
     return render_template("upload.html", input=input)
 
 
-@app.route("/index", methods=["POST"])
+@app.route("/index", methods=["POST", "GET"])
 def index():
-    key = list(request.form.keys())[0]
-    if key == "link1":
-        input2 = request.form[key]
-        generate_script_from_url(input2)
-    elif key == "file1":
-        input2 = request.form[key]
-        generate_script_from_file(input2)
+    input2 = ""
+    if request.method == "POST":
+        key = list(request.form.keys())[0]
+        if key == "link1":
+            input2 = request.form[key]
+            generate_script_from_url(input2)
+        elif key == "file1":
+            input2 = request.form[key]
+            generate_script_from_file(input2)
+
     return render_template("test.html", input2=input2)
 
 
@@ -112,6 +127,8 @@ def get_transcriptions():
     transcriptions = Transcription.query.all()
     transcription_data = [
         {
+            "start": transcription.start,
+            "end": transcription.end,
             "speaker": transcription.speaker,
             "text": transcription.text,
             "translation": transcription.translation,
@@ -119,6 +136,22 @@ def get_transcriptions():
         for transcription in transcriptions
     ]
     return jsonify(transcription_data)
+
+
+@app.route("/analyze", methods=["POST"])
+def analyze():
+    text = request.form["text"]
+    results = analyzer.analyze(text)
+    translated_text = analyzer.translator(text)
+
+    json_results = {
+        "tokens": results["tokens"],
+        "pos_tags": results["pos_tags"],
+        "dependencies": results["dependencies"],
+        "translated_text": translated_text,
+    }
+
+    return json.dumps(json_results, ensure_ascii=False).encode("utf8")
 
 
 @app.route("/test")
