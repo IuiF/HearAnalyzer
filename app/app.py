@@ -11,6 +11,7 @@ from utils.AudioTranscriber import AudioTranscriber
 from dotenv import load_dotenv
 from utils.TextAnalyzer import TextAnalyzer
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 
 app = Flask(__name__)
@@ -138,10 +139,19 @@ def get_transcriptions():
 
 
 @app.route("/analyze", methods=["POST"])
-def analyze_text():
+def analyze():
     text = request.form["text"]
     results = analyzer.analyze(text)
-    return results  # jsonify(results)
+    translated_text = analyzer.translator(text)
+
+    json_results = {
+        "tokens": results["tokens"],
+        "pos_tags": results["pos_tags"],
+        "dependencies": results["dependencies"],
+        "translated_text": translated_text,
+    }
+
+    return json.dumps(json_results, ensure_ascii=False).encode("utf8")
 
 
 @app.route("/test")

@@ -191,4 +191,19 @@ body {
     height: 100%;
     width: 95%;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.result.sentence {
+    margin-bottom: 30px;
+}
+
+
+.highlight-subject {
+    background-color: yellow;
+}
+
+.highlight-verb {
+    background-color: lightgreen;
 }

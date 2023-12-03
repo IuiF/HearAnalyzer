@@ -1,4 +1,6 @@
 import spacy
+import six
+from google.cloud import translate_v2 as translate
 
 
 class TextAnalyzer:
@@ -81,3 +83,13 @@ class TextAnalyzer:
             )
 
         return results
+
+    def translator(self, text):
+        # Translate Clientの生成
+        translate_client = translate.Client()
+
+        # 英語テキストを日本語に翻訳
+        translation = translate_client.translate(text, target_language="ja")
+        translated_text = translation["translatedText"]
+
+        return translated_text
