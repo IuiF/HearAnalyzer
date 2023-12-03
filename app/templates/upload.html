@@ -12,7 +12,8 @@
   <!-- <div class="header">英語スクリプト作成app</div> -->
 
   <div class="main">
-    <h1>スクリプト生成ソフト</h1>
+    <!-- <h1>スクリプト生成ソフト</h1> -->
+    <img src="../static/images/logo.png">
   </div>
   <div class="box">
     <form action="/index" method="POST">
@@ -24,8 +25,8 @@
     </form>
 
     <form action="/index" method="POST">
-      音声・動画アップ{{ input }}<br>
       <div class="filearea" id="video" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+        音声・動画アップロード<br>
         <label>
           <input type="file" name="file1" accept='video/*, audio/*' onchange="preview(this, 'preview-video');"></p>
           <!-- <p class="selecter">＋ファイル選択 または ファイルドロップ</p> -->
