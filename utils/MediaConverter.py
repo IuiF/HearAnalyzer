@@ -7,9 +7,8 @@ class MediaConverter:
     MAX_DURATION_SECONDS = 60 * 60  # 60 minutes
     BITRATE = "128k"  # 128 kbps
 
-    def __init__(self, file_path, output_path):
+    def __init__(self, file_path):
         self.file_path = file_path
-        self.output_path = output_path
         self.extension = os.path.splitext(file_path)[1].lower()
 
     def convert(self):
@@ -30,24 +29,20 @@ class MediaConverter:
             return self.convert_audio_to_mp3()  # MP3に変換
 
     def extract_audio_from_video(self):  # 動画を音声に変換
-        video_output_path = os.path.join(self.output_path, "video.mp4")
-        audio_output_path = os.path.join(self.output_path, "video.mp3")
-
-        video_clip = VideoFileClip(self.file_path)
-        video_clip.write_videofile(video_output_path)  # 動画をoutput_path/video.mp4に保存
-
+        output_path = os.path.splitext(self.file_path)[0] + ".mp3"
+        video_clip = VideoFileClip(self.file_path)  # 動画から音声を抽出
         audio_clip = video_clip.audio
-        temp_path = os.path.splitext(video_output_path)[0] + "_temp.wav"
+        temp_path = os.path.splitext(self.file_path)[0] + "_temp.wav"  # 一時ファイルとして保存
         audio_clip.write_audiofile(temp_path)
         audio = AudioSegment.from_file(temp_path)  # モノラルに変換
         mono_audio = audio.set_channels(1)
-        mono_audio.export(audio_output_path, format="mp3", bitrate=self.BITRATE)
+        mono_audio.export(output_path, format="mp3", bitrate=self.BITRATE)
         os.remove(temp_path)  # 一時ファイルを削除
 
-        return audio_output_path
+        return output_path
 
     def convert_audio_to_mp3(self):  # 音声をmp3に変換
-        output_path = os.path.join(self.output_path, "video.mp3")
+        output_path = os.path.splitext(self.file_path)[0] + ".mp3"
         audio = AudioSegment.from_file(self.file_path)
         audio = audio.set_channels(1)  # モノラル化
         audio.export(output_path, format="mp3", bitrate=self.BITRATE)

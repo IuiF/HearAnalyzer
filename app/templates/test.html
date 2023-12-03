@@ -7,9 +7,11 @@
     <title>Resizable Layout</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" /> <!-- Video.js -->
+    <!-- bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/8.6.1/video.js"></script>
     <script src="{{ url_for('static', filename='js/speaker.js') }}"></script>
-    <!-- <style></style> -->
+    <script src="{{ url_for('static', filename='js/submit.js') }}"></script>
 </head>
 
 <body>
@@ -30,8 +32,18 @@
             </div>
         </div>
     </div>
-    <div id="right-side">構文解析</div>
+    <div id="right-side">
+        <div class="right-section">
+            <form class="analyze">
+                <input type="text" size="40" style="text-align: center;" placeholder="解析したい文章を入力">
+                <input type="submit" value="解析">
+            </form>
+            <div class="result">
 
+
+            </div>
+        </div>
+    </div>
     <script>var player = videojs('my-video');</script>
 </body>
 
