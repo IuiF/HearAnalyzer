@@ -104,6 +104,12 @@ body {
     margin-bottom: 10px;
 }
 
+.message.active {
+    background-color: #f0f0f0;
+    /* アクティブなメッセージの背景色を薄く */
+}
+
+
 .speaker-icon {
     cursor: pointer;
     max-width: 4%;

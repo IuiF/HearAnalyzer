@@ -14,7 +14,7 @@ $(document).ready(function () {
                     var token = response.tokens[index];
                     var className = "";
 
-                    if (dep.dep === "名詞の主語") {
+                    if (dep.dep === "名詞の主語" || dep.dep === "nsubjpass") {
                         className = "highlight-subject";
                     } else if (dep.dep === "文のルート") {
                         className = "highlight-verb";
