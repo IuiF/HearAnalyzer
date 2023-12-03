@@ -20,9 +20,10 @@ body {
   left:25%;
 
   flex: 5;
-  border: solid 4px blue;
   box-sizing: border-box;
-  background: #0bd;
+  background: #B0E0E6;
+  border : dashed 4px #2F4F4F;
+  border-radius: 10px;
 
   text-align: center;
   line-height: 40px;
@@ -35,16 +36,15 @@ body {
 
 .link {
   flex:1;
+  margin: 10px;
 }
 
 .filearea {
   flex:1;
+  margin: 10px;
 }
 
 .uploadbutton {
-    /* position:absolute;
-    right:25%;
-    bottom:20%; */
     text-align: center;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
@@ -56,9 +56,9 @@ body {
         rgba(0, 0, 0, 0.2) 30%,
         rgba(0, 0, 0, 0)
     );
-    box-shadow:
+    /* box-shadow:
     inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6); */
 }
 
 .styled:hover {
